@@ -11,11 +11,18 @@
   <div id="app">
     <div class="q-pa-md">
       <div class="q-gutter-y-md" style="max-width: 600px">
-        <q-tabs class="text-teal" v-model="tab">
-          <q-tab label="Mails" name="mails" icon="mail"></q-tab>
-          <q-tab label="Alarms" name="alarms" icon="alarm"></q-tab>
-          <q-tab label="Movies" name="movies" icon="movie"></q-tab>
-        </q-tabs>
+        <q-tabs class="text-teal">
+          <q-route-tab
+              icon="mail"
+              to="/mails"
+              exact
+          />
+          <q-route-tab
+              icon="alarm"
+              to="/alarms"
+              exact
+          />
+          </q-tabs>
       </div>
     </div>
   </div>  
@@ -26,13 +33,17 @@
 
   <script>
     Vue.use(Quasar)
+
+    const router = new VueRouter({
+      routes: [
+        { path: '/mails', component: { template: '<div>Mails</div>' } },
+        { path: '/alarms', component: { template: '<div>Alarms</div>' } },
+      ]
+    })
+
     new Vue({
+      router,
       el: '#app',
-      data: function () {
-        return {
-          tab: 'mails'
-        }
-      }
     })
   </script>
 </body>
